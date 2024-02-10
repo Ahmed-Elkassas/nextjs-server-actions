@@ -16,3 +16,18 @@ export async function createSnippet(formData: FormData) {
 
   redirect("/");
 }
+
+export async function editSnippet(id: number, code: string) {
+  await db.snippet.update({
+    where: { id },
+    data: { snippetCode: code }
+  });
+  redirect(`/snippets/${id}`);
+}
+
+export async function deleteSnippet(id: number) {
+  await db.snippet.delete({
+    where: { id }
+  });
+  redirect("/");
+}
